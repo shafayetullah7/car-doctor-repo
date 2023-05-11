@@ -1,13 +1,14 @@
 
+import { Outlet } from 'react-router-dom'
 import './App.css'
 
 function App() {
 
 
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
+    <div className='w-full max-w-[86rem] mx-auto'>
+      <Outlet></Outlet>
+    </div>
   )
 }
 
