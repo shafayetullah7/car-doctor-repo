@@ -1,12 +1,26 @@
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
+import { useContext } from 'react';
+import { AuthContext } from '../access/AuthProvider';
 
 const Nav = () => {
+    const navigate = useNavigate();
+    const {user,loading,logoutUser} = useContext(AuthContext);
+    const logout = () =>{
+        logoutUser()
+        .then(result=>{
+            console.log(result);
+        })
+        .catch(err=>{
+            console.log(err.message);
+        })
+    }
     const navItems = <>
-    <li><a>Home</a></li>
-    <li><a>About</a></li>
-    <li><a>Services</a></li>
-    <li><a>Blog</a></li>
-    <li><a>Contact</a></li>
+    <li><NavLink to={`/`} className={({ isActive }) =>isActive? "text-[#fb6f53]": ""}>Home</NavLink></li>
+    <li><NavLink to={`/about`} className={({ isActive }) =>isActive? "text-[#fb6f53]": ""}>About</NavLink></li>
+    <li><NavLink to={`/services`} className={({ isActive }) =>isActive? "text-[#fb6f53]": ""}>Services</NavLink></li>
+    <li><NavLink to={`/blog`} className={({ isActive }) =>isActive? "text-[#fb6f53]": ""}>Blog</NavLink></li>
+    <li><NavLink to={`/contact`} className={({ isActive }) =>isActive? "text-[#fb6f53]": ""}>Contact</NavLink></li>
     </>
     return (
         <div className="navbar h-20 bg-base-100">
@@ -27,7 +41,8 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn btn-outline">Login</a>
+                {!user && <button onClick={()=>navigate('/login')} className="btn btn-outline">Login</button>}
+                {user && <button className="btn btn-outline" onClick={logout}>Logout</button>}
             </div>
         </div>
     );
