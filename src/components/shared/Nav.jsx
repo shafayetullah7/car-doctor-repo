@@ -41,8 +41,18 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {!user && <button onClick={()=>navigate('/login')} className="btn btn-outline">Login</button>}
-                {user && <button className="btn btn-outline" onClick={logout}>Logout</button>}
+
+                {
+                    !loading && <div>
+                        {!user && <button onClick={()=>navigate('/login')} className="btn btn-outline">Login</button>}
+                        {user && <button className="btn btn-outline" onClick={logout}>Logout</button>}
+                    </div>
+                    // if(!loading){
+                    //     {!user && <button onClick={()=>navigate('/login')} className="btn btn-outline">Login</button>}
+                    //     {user && <button className="btn btn-outline" onClick={logout}>Logout</button>}
+                    // } 
+                }
+                
             </div>
         </div>
     );
