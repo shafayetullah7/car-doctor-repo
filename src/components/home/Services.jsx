@@ -23,9 +23,8 @@ const Services = () => {
         else setData(services.slice(0,6));
     },[all,services])
 
-    console.log(data);
     return (
-        <div>
+        <div id="services">
             <div>
                 <p className="text-center text-[#ff3811] font-bold">Service</p>
                 <h1 className="text-center text-4xl font-bold mt-3">Our Service Area</h1>
@@ -39,7 +38,7 @@ const Services = () => {
                         <h2 className="card-title">{d.type}</h2>
                         <p><span className="font-bold">Price: </span>{d.price}</p>
                         <div className="card-actions justify-end">
-                            <BiRightArrowAlt className="text-3xl text-[#ff3811] cursor-pointer" onClick={()=>navigate(`/options/checkOut/${d._id}`)}></BiRightArrowAlt>
+                            <BiRightArrowAlt className="text-3xl text-[#ff3811] cursor-pointer" onClick={()=>navigate(`/checkOut/${d._id}`)}></BiRightArrowAlt>
                         </div>
                     </div>
                     </div>

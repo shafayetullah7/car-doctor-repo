@@ -3,8 +3,10 @@ import Nav from "./shared/Nav";
 
 const Main = () => {
     return (
-        <div>
-            <Nav></Nav>
+        <div className="relative">
+            <div className="sticky top-0 z-50">
+                <Nav></Nav>
+            </div>
             <Outlet></Outlet>
         </div>
     );

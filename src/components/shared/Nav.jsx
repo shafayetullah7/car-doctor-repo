@@ -17,8 +17,7 @@ const Nav = () => {
     }
     const navItems = <>
     <li><NavLink to={`/`} className={({ isActive }) =>isActive? "text-[#ff3811]": ""}>Home</NavLink></li>
-    <li><NavLink to="/about" className={({ isActive }) =>isActive? "text-[#ff3811]": ""}>About</NavLink></li>
-    <li><NavLink to={`/services`} className={({ isActive }) =>isActive? "text-[#ff3811]": ""}>Services</NavLink></li>
+    {user && <li><NavLink to={`/manageCheckouts`} className={({ isActive }) =>isActive? "text-[#ff3811]": ""}>Manage Checkouts</NavLink></li>}
     <li><NavLink to={`/blog`} className={({ isActive }) =>isActive? "text-[#ff3811]": ""}>Blog</NavLink></li>
     <li><NavLink to={`/contact`} className={({ isActive }) =>isActive? "text-[#ff3811]": ""}>Contact</NavLink></li>
     </>

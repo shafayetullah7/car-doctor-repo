@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from '../../assets/login.svg';
 import { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
@@ -6,6 +6,9 @@ import { AuthContext } from "./AuthProvider";
 const Login = () => {
     const {loginUser} = useContext(AuthContext);
     const [error,setError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(location);
     
     const handleSubmit = e =>{
         e.preventDefault();
@@ -23,6 +26,7 @@ const Login = () => {
         loginUser(email,password)
         .then(result=>{
             console.log(result.user);
+            navigate(location?.state?.from?.pathname || '/',{replace:true})
         })
         .catch(err=>{
             console.log(err.message);
@@ -59,7 +63,7 @@ const Login = () => {
                                 <input className="btn btn-primary" type="submit" value={'Login'}/>
                                 </div>
                             </form>
-                            <p className="text-sm mt-3">Do not have an account?<Link to={'/register'} className="text-[#FB6F53] font-bold">Register</Link></p>
+                            <p className="text-sm mt-3">Do not have an account?<Link to={'/register'} state={{from:location?.state?.from}} className="text-[#FB6F53] font-bold">Register</Link></p>
                         </div>
                     </div>
                 </div>

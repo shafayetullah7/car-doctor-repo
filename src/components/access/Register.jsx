@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import login from '../../assets/login.svg';
 import { useContext, useState } from 'react';
 import { AuthContext } from './AuthProvider';
@@ -8,6 +8,8 @@ const Register = () => {
     const [error,setError] = useState('');
 
     const {createUser} = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleSubmit = e =>{
         e.preventDefault();
@@ -34,6 +36,7 @@ const Register = () => {
         createUser(email,password)
         .then(result=>{
             console.log(result.user);
+            navigate(location?.state?.from?.pathname || '/',{replace:true});
         })
         .catch(err=>{
             console.log(err.message);
@@ -73,7 +76,7 @@ const Register = () => {
                                     <input className="btn btn-primary" type="submit" value={'Register'}/>
                                 </div>
                             </form>
-                            <p className="text-sm mt-3">Already have an account?<Link to={'/login'} className="text-[#FB6F53] font-bold">Register</Link></p>
+                            <p className="text-sm mt-3">Already have an account?<Link to={'/login'} state={{from:location?.state?.from}} className="text-[#FB6F53] font-bold">Register</Link></p>
                         </div>
                     </div>
                 </div>

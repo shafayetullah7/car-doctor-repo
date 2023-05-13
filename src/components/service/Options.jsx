@@ -9,7 +9,7 @@ const Options = () => {
                 <h1 className='text-5xl absolute top-1/2 -translate-y-1/2 left-24 font-bold text-white z-10'>Service</h1>
                 <div className='h-full absolute top-0 w-full bg-gradient-to-r from-black via-gray-700 to-transparent opacity-50 z-0'></div>
             </div>
-            <div className='mt-24'>
+            <div className='my-32'>
                 <Outlet></Outlet>
             </div>
         </div>
