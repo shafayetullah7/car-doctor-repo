@@ -12,7 +12,8 @@ const Services = () => {
         .then(res=>res.json())
         .then(data=>{
             setServices(data);
-        });
+        })
+        .catch(err=>console.log('error: ',err.message))
     },[]);
     useEffect(()=>{
         setData(services.slice(0,6));

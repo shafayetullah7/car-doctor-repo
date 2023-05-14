@@ -10,6 +10,8 @@ const Nav = () => {
         logoutUser()
         .then(result=>{
             console.log(result);
+            // localStorage.setItem('car_access_token',data.token);
+            localStorage.removeItem('car_access_token');
         })
         .catch(err=>{
             console.log(err.message);

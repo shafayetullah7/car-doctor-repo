@@ -1,17 +1,32 @@
 import Footer from "../shared/Footer";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../access/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const ManageCheckouts = () => {
     const [data,setData] = useState([]);
     const {user} = useContext(AuthContext);
+    const navigate = useNavigate()
 
     console.log('email',user.email);
     useEffect(()=>{
-        fetch(`http://localhost:5000/checkouts?email=${user.email}`)
+        fetch(`http://localhost:5000/checkouts?email=${user.email}`,{
+            method:'GET',
+            headers:{
+                authorization:`Bearer ${localStorage.getItem('car_access_token')}`
+            }
+        })
         .then(res=>res.json())
-        .then(data=>setData(data));
-    },[])
+        .then(data=>{
+            if(!data.error)setData(data);
+            else{
+                navigate('/',{replace:true});
+            }
+        })
+        .catch(err=>{
+            console.log('error: ',err.message)
+        })
+    },[navigate])
     return (
         <div>
             <div className="overflow-x-auto my-32">
